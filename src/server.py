@@ -1,7 +1,7 @@
 from flask import Response, Flask, request , jsonify, render_template
 import prometheus_client
 from prometheus_client.core import CollectorRegistry
-from prometheus_client import Summary, Counter, Histogram, Gauge , Info 
+from prometheus_client import  Gauge , Info
 from helperFunc import *
 import time
 import os
