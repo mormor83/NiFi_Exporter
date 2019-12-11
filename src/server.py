@@ -13,7 +13,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 ## Variables ###
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
-#BASE_URL = "https://hrz-nifi01-prd.payoneer.com:9443"
+
 BASE_URL = os.environ['BASE_URL']
 USERNAME = os.environ['USERNAME']
 PASSWORD = os.environ['PASSWORD']
@@ -30,7 +30,6 @@ def metrics():
   #print (globals().keys())
   registry = CollectorRegistry()
   url=BASE_URL+"/nifi-api/access/token"
-  #token = getToken(url,"morok","Dvirnoa321" )
   token = getToken(url,USERNAME,PASSWORD  )
 
 
