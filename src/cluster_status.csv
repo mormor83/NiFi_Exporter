@@ -1,0 +1,8 @@
+LocaleName,variableName,variableDesc
+activeThreadCount,nifi_cluster_activeThreadCount,General number of activeThreadCount
+terminatedThreadCount,nifi_cluster_terminatedThreadCount,General terminatedThreadCount
+flowFilesQueued,nifi_cluster_flowFilesQueued,flowFilesQueued
+bytesQueued,nifi_cluster_bytesQueued,
+runningCount,nifi_cluster_runningCount,
+stoppedCount,nifi_cluster_stoppedCount,
+invalidCount,nifi_cluster_invalidCount,
