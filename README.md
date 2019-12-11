@@ -1,6 +1,6 @@
 # NiFi Exporter
 
-Prometheus exporter for Nifi metrics written in python
+Prometheus exporter for Nifi metrics written in python  
 Data is scraped by [prometheus](https://prometheus.io).
 
 ## Installation
