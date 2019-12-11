@@ -52,6 +52,12 @@ metric | description
 nifi_amount_items_queued | Count the number of queued files per PG
 
 
+Grafana Dashboard
+-------
+Grafana Dashboard ID: 11387, name: NiFi Monitoring.  
+For details of the dashboard please see [NiFi Monitoring](https://grafana.com/grafana/dashboards/11387).
+
+
 
 
 
