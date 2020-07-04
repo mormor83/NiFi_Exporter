@@ -9,6 +9,6 @@ services:
     ports:
       - "9092:5000"
     environment:
-     - BASE_URL=https://<Nifi Domain>:<Port>
+     - BASE_URL=    #https://<Nifi Domain>:<Port>
      - USERNAME=
      - PASSWORD=
