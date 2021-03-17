@@ -5,11 +5,19 @@ Data is scraped by [prometheus](https://prometheus.io).
 
 ## Installation
 
-### Docker 
+### Docker
+Run the following to build the image using docker
 
-Run the following to build the image using Docker-compose
+      docker build -t nifi_monitor .
+
+Run the following to run the exporter
+      
+      docker run --rm --name nifi_monitor -p 9092:5000 -e BASE_URL=[HOST:PORT] nifi_monitor
+      
+As alternative, run the following to build the image using Docker-compose
 
       docker-compose up -d --build
+
  
 ## Configuration
 
