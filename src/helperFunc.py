@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def getToken( url,login,password ):
+def getToken(url, login, password):
   endpoint = url
   data = {"username":login, "password":password}
   headers = {'Content-Type' : 'application/x-www-form-urlencoded' }
@@ -13,8 +13,14 @@ def getToken( url,login,password ):
   else:
     return p
 
-def getCluster( url, token ):
-  headers = {'authorization': "Bearer " + token }
+def getHeaders(token):
+  headers = {}
+  if token != None:
+    headers = {'authorization': "Bearer " + token }
+  return headers
+
+def getCluster(url, token):
+  headers = getHeaders(token)
   response = requests.get(url, headers=headers, verify=False)
   #logger.debug( response.text)
   jData = json.loads(response.text)
@@ -27,19 +33,19 @@ def convertStatus(status):
     return 0
 
 def getFlow( url, token ):
-  headers = {'authorization': "Bearer " + token }
+  headers = getHeaders(token)
   response = requests.get(url, headers=headers, verify=False)
   jData = json.loads(response.text)
   return jData['controllerStatus']
 
 def about(url , token):
-  headers = {'authorization': "Bearer " + token }
+  headers = getHeaders(token)
   response = requests.get(url, headers=headers, verify=False)
   jData = json.loads(response.text)
   return jData['about']
 
 def getProcessorFlow(url,token):
-  headers = {'authorization': "Bearer " + token }
+  headers = getHeaders(token)
   response = requests.get(url, headers=headers, verify=False)
   jData = json.loads(response.text)
   return jData['processGroups']

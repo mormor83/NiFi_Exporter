@@ -15,8 +15,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 
 BASE_URL = os.environ['BASE_URL']
-USERNAME = os.environ['USERNAME']
-PASSWORD = os.environ['PASSWORD']
+USERNAME = os.environ.get('USERNAME')
+PASSWORD = os.environ.get('PASSWORD')
 
 app = Flask(import_name=__name__)
 
@@ -29,18 +29,19 @@ def metrics():
   lst=[]
   #print (globals().keys())
   registry = CollectorRegistry()
-  url=BASE_URL+"/nifi-api/access/token"
-  token = getToken(url,USERNAME,PASSWORD  )
-
+  url = BASE_URL + "/nifi-api/access/token"
+  token = None
+  if None != USERNAME:
+    token = getToken(url, USERNAME, PASSWORD)
 
   #### ====  cluster nodes status ==== ####
-  url=BASE_URL+"/nifi-api/controller/cluster"
-  cluster = getCluster(url,token)
+  url = BASE_URL + "/nifi-api/controller/cluster"
+  cluster = getCluster(url, token)
   for item in cluster:
     NodeName = {"instance":item['address']}
-    nodeStatus =  Gauge('nifi_nodes_status','Nifi node status',NodeName.keys(),registry=registry)
-    activeThreadCount=Gauge('nifi_node_activeThreadCount','Total number of activeThreadCount per node',NodeName.keys(),registry=registry)
-    queuedItems = Gauge('nifi_node_queuedItems','Number of queud items per node',NodeName.keys(),registry=registry) 
+    nodeStatus = Gauge('nifi_nodes_status', 'Nifi node status', NodeName.keys(), registry=registry)
+    activeThreadCount = Gauge('nifi_node_activeThreadCount', 'Total number of activeThreadCount per node', NodeName.keys(), registry=registry)
+    queuedItems = Gauge('nifi_node_queuedItems','Number of queud items per node', NodeName.keys(), registry=registry)
 
     nodeStatus.labels(**NodeName).set(convertStatus(item['status']))
     lst.append(prometheus_client.generate_latest(nodeStatus))
