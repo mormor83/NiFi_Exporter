@@ -29,6 +29,7 @@ Environment variable|default|description
 BASE_URL|None| Use the following format https:// <Nifi Domain> : <Cluster port>
 USERNAME|None|Please make sure you have the relevant policies 
 PASSWORD|None|
+CONNECTIONS_QUEUE|True| set `True` if you want to get queue metrics or `False` if not
   
   
 ## Metrics
@@ -58,6 +59,11 @@ nifi_cluster_invalidCount|
 metric | description
 -------| ------------
 nifi_amount_items_queued | Count the number of queued files per PG
+
+### Queue
+metric | description
+-------| ------------
+nifi_connection_queue | Queue size by connection. Queue name is `SourceProcessor`\_to_`DestinationProcessor`
 
 
 Grafana Dashboard

@@ -12,3 +12,4 @@ services:
      - BASE_URL=    #https://<Nifi Domain>:<Port>
      - USERNAME=
      - PASSWORD=
+     - CONNECTIONS_QUEUE=True
